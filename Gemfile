@@ -57,7 +57,7 @@ group :development do
 # gem 'letter_opener'
 
 gem 'letter_opener_web', group: :production
-
+  gem 'pg'
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 end
@@ -68,7 +68,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem 'pg', group: :production
+
 
 
 # My Gems
