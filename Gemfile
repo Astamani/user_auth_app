@@ -56,7 +56,7 @@ group :development do
 
 # gem 'letter_opener'
 
-gem 'letter_opener_web', group: :development
+gem 'letter_opener_web', group: :production
 
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
@@ -68,9 +68,15 @@ group :test do
   gem "selenium-webdriver"
 end
 
+gem 'pg', group: :production
+
+
 # My Gems
 gem 'cancancan', '~> 3.0'
 
 gem 'devise'
 
 gem "tailwindcss-rails", "~> 4.2"
+
+# In your Gemfile
+gem 'render_rails'
