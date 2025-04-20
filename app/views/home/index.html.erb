@@ -1,0 +1,136 @@
+<div class="landing-container">
+  <div class="landing-card">
+    <div class="hero-section">
+      <h1 class="hero-title">Welcome to User Auth App 🎉</h1>
+      <p class="hero-subtitle">A secure and seamless authentication system built with Rails</p>
+    </div>
+
+    <div class="content-section">
+      <% if user_signed_in? %>
+        <div class="user-greeting">
+          <p>Hello <span class="user-email"><%= current_user.email %></span> 👋</p>
+          <p>Thanks for logging in. Let’s manage your profile efficiently.</p>
+        </div>
+
+        <div class="cta-buttons">
+          <%= link_to "View Profile", profile_path, class: "welcome-button primary" %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, 
+              data: { turbo_method: :delete }, class: "welcome-button secondary" %>
+        </div>
+      <% else %>
+        <div class="guest-message">
+          <p>Please use the navigation bar to log in or sign up and explore the app.</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<style>
+  .landing-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 1rem;
+    min-height: 100vh;
+    # background: linear-gradient(to right, #60a5fa, #3b82f6);
+  }
+
+  .landing-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .hero-section {
+    background: #1e3a8a;
+    color: #ffffff;
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+
+  .hero-title {
+    font-size: 2.75rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    opacity: 0.9;
+  }
+
+  .content-section {
+    padding: 2rem 2.5rem;
+    text-align: center;
+  }
+
+  .user-greeting, .guest-message {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    color: #374151;
+    line-height: 1.6;
+  }
+
+  .user-email {
+    font-weight: 600;
+    color: #111827;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .welcome-button {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .welcome-button.primary {
+    background-color: #2563eb;
+    color: white;
+  }
+
+  .welcome-button.primary:hover {
+    background-color: #1d4ed8;
+  }
+
+  .welcome-button.secondary {
+    background-color: #f3f4f6;
+    color: #1f2937;
+    border: 1px solid #d1d5db;
+  }
+
+  .welcome-button.secondary:hover {
+    background-color: #e5e7eb;
+  }
+
+  @media (max-width: 640px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .content-section {
+      padding: 1.5rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+    }
+
+    .welcome-button {
+      width: 100%;
+    }
+  }
+</style>

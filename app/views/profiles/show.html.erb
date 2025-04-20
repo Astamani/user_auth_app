@@ -1,0 +1,143 @@
+<div class="profile-container">
+  <div class="profile-header">
+    <h2>Your Profile</h2>
+    <%= link_to "Edit Profile", edit_profile_path, class: "edit-profile-btn" %>
+  </div>
+
+  <div class="profile-content">
+    <div class="profile-info">
+      <div class="info-group">
+        <span class="info-label">Full Name</span>
+        <span class="info-value"><%= @profile.full_name %></span>
+      </div>
+      <div class="info-group">
+        <span class="info-label">Phone</span>
+        <span class="info-value"><%= @profile.phone %></span>
+      </div>
+      <div class="info-group">
+        <span class="info-label">Address</span>
+        <span class="info-value"><%= @profile.address %></span>
+      </div>
+    </div>
+
+    <div class="profile-avatar">
+      <% if @profile.avatar.attached? %>
+        <%= image_tag @profile.avatar, class: "avatar-image" %>
+      <% else %>
+        <div class="avatar-placeholder">
+        <%= @profile.full_name.present? ? @profile.full_name.split.map(&:first).join("")[0..1].upcase : "NA" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<style>
+  .profile-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .profile-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+  }
+
+  .edit-profile-btn {
+    display: inline-block;
+    background-color: #3b82f6;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+
+  .edit-profile-btn:hover {
+    background-color: #2563eb;
+    text-decoration: none;
+    color: white;
+  }
+
+  .profile-content {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  .profile-info {
+    flex: 1;
+  }
+
+  .info-group {
+    margin-bottom: 1.25rem;
+  }
+
+  .info-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #6b7280;
+    margin-bottom: 0.25rem;
+  }
+
+  .info-value {
+    display: block;
+    font-size: 1rem;
+    color: #1f2937;
+    font-weight: 500;
+  }
+
+  .profile-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .avatar-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #e5e7eb;
+  }
+
+  .avatar-placeholder {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #3b82f6;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+
+  @media (max-width: 640px) {
+    .profile-content {
+      flex-direction: column-reverse;
+    }
+
+    .profile-avatar {
+      margin-bottom: 1.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,151 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <h2 class="auth-title">Resend confirmation instructions</h2>
+
+    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: "auth-form" }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="form-group">
+        <%= f.label :email, class: "form-label" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", 
+                         value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
+                         class: "form-input" %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.submit "Resend confirmation instructions", class: "auth-button" %>
+      </div>
+    <% end %>
+
+    <div class="auth-links">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>
+
+<style>
+  .auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+  }
+
+  .auth-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: 100%;
+    max-width: 450px;
+  }
+
+  .auth-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 1.5rem 0;
+    text-align: center;
+  }
+
+  .auth-form {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4b5563;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-input {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #1f2937;
+    background-color: #f9fafb;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  .form-input:focus {
+    background-color: #ffffff;
+    border-color: #3b82f6;
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+  }
+
+  .form-actions {
+    margin-top: 1.5rem;
+  }
+
+  .auth-button {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    color: #ffffff;
+    background-color: #3b82f6;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .auth-button:hover {
+    background-color: #2563eb;
+  }
+
+  .auth-links {
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    text-align: center;
+  }
+
+  .auth-links a {
+    color: #3b82f6;
+    text-decoration: none;
+    margin: 0 0.25rem;
+  }
+
+  .auth-links a:hover {
+    text-decoration: underline;
+    color: #2563eb;
+  }
+
+  /* Devise error messages styling compatibility */
+  #error_explanation {
+    background-color: #fee2e2;
+    color: #991b1b;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: 6px;
+  }
+
+  #error_explanation h2 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  #error_explanation ul {
+    margin-bottom: 0;
+    padding-left: 1.5rem;
+  }
+
+  .field_with_errors .form-input {
+    border-color: #ef4444;
+  }
+</style>
